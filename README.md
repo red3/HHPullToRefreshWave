@@ -1,7 +1,7 @@
 # HHPullToRefreshWave
 Wave animation pull to refresh for iOS, inspired by Mayijubao app 
 
-![](http://)
+![](https://raw.githubusercontent.com/red3/HHPullToRefreshWave/master/HHPullToRefreshWavePreview1.gif)
 
 ## Requirements
 
