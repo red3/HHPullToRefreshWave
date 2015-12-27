@@ -88,12 +88,22 @@ typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
   
 }
 
+- (void)setTopWaveColor:(UIColor *)topWaveColor {
+    _topWaveColor = topWaveColor;
+    _firstWaveLayer.fillColor = topWaveColor.CGColor;
+}
+
+- (void)setBottomWaveColor:(UIColor *)bottomWaveColor {
+    _bottomWaveColor = bottomWaveColor;
+    _secondWaveLayer.fillColor = bottomWaveColor.CGColor;
+}
+
 - (void)setupProperty
 {
     _speed = 0.4/M_PI;
     _times = 1;
-    _amplitude = 1.6;
-    _variable = 1.6;
+    _amplitude = HHMaxVariable;
+    _variable = HHMaxVariable;
     _increase = NO;
     
 }
@@ -113,7 +123,6 @@ typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
     }
     
     if ([keyPath isEqualToString:HHKeyPathsContentOffset]) {
-        NSLog(@"is track : %d", self.scrollView.isTracking);
             [self scrollViewDidChangeContentOffset];
         
     } else if ([keyPath isEqualToString:HHKeyPathsFrame]) {

@@ -30,10 +30,13 @@ static NSString *const hh_associatePullToRefreshViewKey = @"hh_associatePullToRe
 }
 
 
+#pragma mark - Public Func
+
 - (void)hh_addRefreshViewWithActionHandler:(void (^)())actionHandler {
 
     HHPullToRefreshWaveView *refreshWaveView = [[HHPullToRefreshWaveView alloc] init];
     [self addSubview:refreshWaveView];
+    self.pullToRefreshView = refreshWaveView;
     
     refreshWaveView.actionHandler = actionHandler;
     [refreshWaveView observeScrollView:self];
@@ -49,5 +52,13 @@ static NSString *const hh_associatePullToRefreshViewKey = @"hh_associatePullToRe
     [self.pullToRefreshView removeFromSuperview];
    
 }
+
+- (void)hh_setRefreshViewTopWaveFillColor:(UIColor *)color {
+    self.pullToRefreshView.topWaveColor = color;
+}
+- (void)hh_setRefreshViewBottomWaveFillColor:(UIColor *)color {
+    self.pullToRefreshView.bottomWaveColor = color;
+}
+
 
 @end

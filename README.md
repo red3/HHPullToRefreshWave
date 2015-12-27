@@ -16,6 +16,7 @@ Open and run the Demo project in Xcode to see HHPullToRefreshWave in action.
 ## Installation
 
 ### Cocoapods
+
 ### Manual
 
 Add HHPullToRefreshWave folder into your project.
@@ -23,24 +24,44 @@ Add HHPullToRefreshWave folder into your project.
 ## Example usage
 
 ``` objective-c
+
+ [self.tableView hh_addRefreshViewWithActionHandler:^{
+        NSLog(@"action");
+    }];
+ [self.tableView hh_setRefreshViewTopWaveFillColor:[UIColor lightGrayColor]];
+ [self.tableView hh_setRefreshViewBottomWaveFillColor:[UIColor whiteColor]];
+    
 ```
 Do not forget to remove pull to refresh on view controller dealloc. It is a temporary solution
 
 ``` objective-c
+ [self.tableView hh_removeRefreshView];
 ```
 ### Description
 
 Add pull to refresh with a block handler:
 
 ``` objective-c
+[self.tableView hh_addRefreshViewWithActionHandler:^{
+        NSLog(@"action");
+    }];
 ```
 Remove pull to refresh:
 
 ``` objective-c
+[self.tableView hh_removeRefreshView];
 ```
 Change top wave fill color:
 
+``` objective-c
+ [self.tableView hh_setRefreshViewTopWaveFillColor:[UIColor lightGrayColor]];
+```
+
 Change bottom wave fill color:
+
+``` objective-c
+ [self.tableView hh_setRefreshViewBottomWaveFillColor:[UIColor whiteColor]];
+```
 
 ## Contribution 
 
@@ -49,7 +70,6 @@ Please feel free to submit pull request, also submit a issue if you have any que
 ## Contact 
 
 - https://github.com/red3
-- http://
 
 ## License
 The MIT License (MIT)

@@ -12,7 +12,10 @@
 
 
 - (void)hh_addRefreshViewWithActionHandler:(void (^)())actionHandler;
-// dg_removePullToRefresh
 - (void)hh_removeRefreshView;
+
+- (void)hh_setRefreshViewTopWaveFillColor:(UIColor *)color;
+- (void)hh_setRefreshViewBottomWaveFillColor:(UIColor *)color;
+
 
 @end

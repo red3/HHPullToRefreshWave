@@ -12,8 +12,8 @@
 @interface HHPullToRefreshWaveView : UIView
 
 @property (nonatomic, copy) void (^actionHandler)();
-@property (nonatomic, strong)   UIColor *topWaveColor;
-@property (nonatomic, strong)   UIColor *bottomWaveColor;
+@property (nonatomic, strong)   UIColor *topWaveColor; // default to be 0.667 white
+@property (nonatomic, strong)   UIColor *bottomWaveColor; // default to be white color
 
 - (void)invalidateWave;
 - (void)observeScrollView:(UIScrollView *)scrollView;

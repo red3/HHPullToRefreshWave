@@ -32,6 +32,8 @@
     [self.tableView hh_addRefreshViewWithActionHandler:^{
         NSLog(@"action");
     }];
+    [self.tableView hh_setRefreshViewTopWaveFillColor:[UIColor lightGrayColor]];
+    [self.tableView hh_setRefreshViewBottomWaveFillColor:[UIColor whiteColor]];
     
    
 }
