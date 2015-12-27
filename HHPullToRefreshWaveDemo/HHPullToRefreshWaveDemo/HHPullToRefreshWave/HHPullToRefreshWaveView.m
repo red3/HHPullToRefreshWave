@@ -74,8 +74,8 @@ typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
     _secondWaveLayer = [CAShapeLayer layer];
     _secondWaveLayer.fillColor = [UIColor whiteColor].CGColor;
     
-    _firstWaveColor = [UIColor lightGrayColor];
-    _secondWaveColor = [UIColor whiteColor];
+    _topWaveColor = [UIColor lightGrayColor];
+    _bottomWaveColor = [UIColor whiteColor];
     
     [self setupProperty];
    
@@ -92,12 +92,11 @@ typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
 {
     _speed = 0.4/M_PI;
     _times = 1;
-    _amplitude = 0;
+    _amplitude = 1.6;
     _variable = 1.6;
     _increase = NO;
     
 }
-
 
 - (CGFloat)currentHeight {
     if (!self.scrollView) {
@@ -114,7 +113,9 @@ typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
     }
     
     if ([keyPath isEqualToString:HHKeyPathsContentOffset]) {
-        [self scrollViewDidChangeContentOffset];
+        NSLog(@"is track : %d", self.scrollView.isTracking);
+            [self scrollViewDidChangeContentOffset];
+        
     } else if ([keyPath isEqualToString:HHKeyPathsFrame]) {
         // [self layoutSubviews];
     } else if ([keyPath isEqualToString:HHKeyPathsContentInset]) {
@@ -138,8 +139,8 @@ typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
     if (offset == 0.00 && self.scrollView.isDecelerating) {
          [self animatingStopWave];
     }
-    if (offset == 0.00 && !self.scrollView.isDecelerating && self.state != HHPullToRefreshWaveViewAnimating) {
-        [self startWave];
+    if (offset >= 0.00 && !self.scrollView.isDecelerating && self.state != HHPullToRefreshWaveViewAnimating && self.scrollView.isTracking) {
+         [self startWave];
     }
 }
 
