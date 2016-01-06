@@ -10,6 +10,12 @@
 
 @interface UIScrollView (HHPullToRefreshWaveView)
 
-- (void)addRefreshView;
+
+- (void)hh_addRefreshViewWithActionHandler:(void (^)())actionHandler;
+- (void)hh_removeRefreshView;
+
+- (void)hh_setRefreshViewTopWaveFillColor:(UIColor *)color;
+- (void)hh_setRefreshViewBottomWaveFillColor:(UIColor *)color;
+
 
 @end

@@ -2,8 +2,9 @@
 //  HHPullToRefreshWave.h
 //  HHPullToRefreshWaveView
 //
-//  Created by Herui on 15/12/25.
-//  Copyright © 2015年 harry. All rights reserved.
+//  http://github.com/red3
+//  Please issue me if you have any question. :)
+//  Copyright © 2015年 hirain. All rights reserved.
 //
 
 #ifndef HHPullToRefreshWave_h

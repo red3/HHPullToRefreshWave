@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493312C91C3D1F54001D821C /* HHPullToRefreshWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493312C61C3D1F54001D821C /* HHPullToRefreshWaveView.m */; };
+		493312CA1C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493312C81C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.m */; };
 		49BFF6AA1C2E4924000ACA62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BFF6A91C2E4924000ACA62 /* main.m */; };
 		49BFF6AD1C2E4924000ACA62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BFF6AC1C2E4924000ACA62 /* AppDelegate.m */; };
 		49BFF6B31C2E4924000ACA62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BFF6B11C2E4924000ACA62 /* Main.storyboard */; };
 		49BFF6B51C2E4924000ACA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BFF6B41C2E4924000ACA62 /* Assets.xcassets */; };
 		49BFF6B81C2E4924000ACA62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BFF6B61C2E4924000ACA62 /* LaunchScreen.storyboard */; };
-		49BFF6C51C2E499B000ACA62 /* HHPullToRefreshWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BFF6C21C2E499B000ACA62 /* HHPullToRefreshWaveView.m */; };
-		49BFF6C61C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BFF6C41C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.m */; };
 		49BFF6C91C2E4D13000ACA62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BFF6C81C2E4D13000ACA62 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		493312C41C3D1F54001D821C /* HHPullToRefreshWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPullToRefreshWave.h; sourceTree = "<group>"; };
+		493312C51C3D1F54001D821C /* HHPullToRefreshWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPullToRefreshWaveView.h; sourceTree = "<group>"; };
+		493312C61C3D1F54001D821C /* HHPullToRefreshWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPullToRefreshWaveView.m; sourceTree = "<group>"; };
+		493312C71C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+HHPullToRefreshWaveView.h"; sourceTree = "<group>"; };
+		493312C81C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+HHPullToRefreshWaveView.m"; sourceTree = "<group>"; };
 		49BFF6A51C2E4924000ACA62 /* HHPullToRefreshWaveDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HHPullToRefreshWaveDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BFF6A91C2E4924000ACA62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		49BFF6AB1C2E4924000ACA62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,11 +31,6 @@
 		49BFF6B41C2E4924000ACA62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49BFF6B71C2E4924000ACA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49BFF6B91C2E4924000ACA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49BFF6C01C2E499B000ACA62 /* HHPullToRefreshWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPullToRefreshWave.h; sourceTree = "<group>"; };
-		49BFF6C11C2E499B000ACA62 /* HHPullToRefreshWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPullToRefreshWaveView.h; sourceTree = "<group>"; };
-		49BFF6C21C2E499B000ACA62 /* HHPullToRefreshWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPullToRefreshWaveView.m; sourceTree = "<group>"; };
-		49BFF6C31C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+HHPullToRefreshWaveView.h"; sourceTree = "<group>"; };
-		49BFF6C41C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+HHPullToRefreshWaveView.m"; sourceTree = "<group>"; };
 		49BFF6C71C2E4D13000ACA62 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		49BFF6C81C2E4D13000ACA62 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +46,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493312C31C3D1F54001D821C /* HHPullToRefreshWave */ = {
+			isa = PBXGroup;
+			children = (
+				493312C41C3D1F54001D821C /* HHPullToRefreshWave.h */,
+				493312C51C3D1F54001D821C /* HHPullToRefreshWaveView.h */,
+				493312C61C3D1F54001D821C /* HHPullToRefreshWaveView.m */,
+				493312C71C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.h */,
+				493312C81C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.m */,
+			);
+			name = HHPullToRefreshWave;
+			path = ../../HHPullToRefreshWave;
+			sourceTree = "<group>";
+		};
 		49BFF69C1C2E4924000ACA62 = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +78,7 @@
 		49BFF6A71C2E4924000ACA62 /* HHPullToRefreshWaveDemo */ = {
 			isa = PBXGroup;
 			children = (
-				49BFF6BF1C2E499B000ACA62 /* HHPullToRefreshWave */,
+				493312C31C3D1F54001D821C /* HHPullToRefreshWave */,
 				49BFF6AB1C2E4924000ACA62 /* AppDelegate.h */,
 				49BFF6AC1C2E4924000ACA62 /* AppDelegate.m */,
 				49BFF6C71C2E4D13000ACA62 /* ViewController.h */,
@@ -85,18 +98,6 @@
 				49BFF6A91C2E4924000ACA62 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		49BFF6BF1C2E499B000ACA62 /* HHPullToRefreshWave */ = {
-			isa = PBXGroup;
-			children = (
-				49BFF6C01C2E499B000ACA62 /* HHPullToRefreshWave.h */,
-				49BFF6C11C2E499B000ACA62 /* HHPullToRefreshWaveView.h */,
-				49BFF6C21C2E499B000ACA62 /* HHPullToRefreshWaveView.m */,
-				49BFF6C31C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.h */,
-				49BFF6C41C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.m */,
-			);
-			path = HHPullToRefreshWave;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49BFF6C51C2E499B000ACA62 /* HHPullToRefreshWaveView.m in Sources */,
 				49BFF6AD1C2E4924000ACA62 /* AppDelegate.m in Sources */,
+				493312C91C3D1F54001D821C /* HHPullToRefreshWaveView.m in Sources */,
 				49BFF6AA1C2E4924000ACA62 /* main.m in Sources */,
-				49BFF6C61C2E499B000ACA62 /* UIScrollView+HHPullToRefreshWaveView.m in Sources */,
 				49BFF6C91C2E4D13000ACA62 /* ViewController.m in Sources */,
+				493312CA1C3D1F54001D821C /* UIScrollView+HHPullToRefreshWaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

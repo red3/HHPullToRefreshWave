@@ -18,49 +18,41 @@ static NSString *HHKeyPathsContentInset = @"ContentInset";
 static NSString *HHKeyPathsFrame = @"frame";
 static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.state";
 
+typedef NS_ENUM(NSUInteger, HHPullToRefreshWaveViewState) {
+    HHPullToRefreshWaveViewStopped,
+    HHPullToRefreshWaveViewAnimating,
+    HHPullToRefreshWaveViewAnimatingToStopped,
+};
+
 
 @interface HHPullToRefreshWaveView ()
 {
     CGFloat _amplitude;
     CGFloat _cycle;
     CGFloat _speed;
-    CGFloat _growth;
     CGFloat _offsetX;
     CGFloat _offsetY;
     CGFloat _variable;
     CGFloat _height;
     BOOL _increase;
-    BOOL _stop;
-    
     
     CGFloat originalContentInsetTop;
 }
 
 
-
-
-
 @property (nonatomic, strong) CADisplayLink *displaylink;
 @property (nonatomic, strong) CAShapeLayer  *firstWaveLayer;
 @property (nonatomic, strong) CAShapeLayer  *secondWaveLayer;
+@property (nonatomic, weak) UIScrollView *scrollView;
 
-
-
-@property (nonatomic, assign) NSUInteger times;
+@property (nonatomic) HHPullToRefreshWaveViewState state;
+@property (nonatomic) NSUInteger times;
 
 @end
 
 @implementation HHPullToRefreshWaveView
 
-- (instancetype)init {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    [self setup];
-    return self;
-}
-
+#pragma mark - Init
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (!self) {
@@ -71,7 +63,6 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
 }
 
 - (void)setup {
-    // self.backgroundColor = [UIColor cyanColor];
     _displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkTric:)];
     _displaylink.frameInterval = 2;
     [_displaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -79,13 +70,14 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
     
     _firstWaveLayer = [CAShapeLayer layer];
     _firstWaveLayer.fillColor = [UIColor lightGrayColor].CGColor;
-    // [self.layer addSublayer:_firstWaveLayer];
     
     _secondWaveLayer = [CAShapeLayer layer];
     _secondWaveLayer.fillColor = [UIColor whiteColor].CGColor;
-    // [self.layer addSublayer:_secondWaveLayer];
     
-    [self setUp];
+    _topWaveColor = [UIColor lightGrayColor];
+    _bottomWaveColor = [UIColor whiteColor];
+    
+    [self setupProperty];
    
 }
 
@@ -93,49 +85,34 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
 - (void)setScrollView:(UIScrollView *)scrollView {
     _scrollView = scrollView;
     _cycle = 2 * M_PI / scrollView.frame.size.width;
-    _times = 1;
   
 }
 
-
-
-- (void)setUp
-{
-   
-    _firstWaveColor = [UIColor lightGrayColor];
-    _secondWaveColor = [UIColor whiteColor];
-    
-    _growth = 0.85;
-    // waveSpeed = 0.4/M_PI;
-    
-    _speed = 0.4/M_PI;
-    
-    
-    [self resetProperty];
+- (void)setTopWaveColor:(UIColor *)topWaveColor {
+    _topWaveColor = topWaveColor;
+    _firstWaveLayer.fillColor = topWaveColor.CGColor;
 }
 
-- (void)resetProperty
+- (void)setBottomWaveColor:(UIColor *)bottomWaveColor {
+    _bottomWaveColor = bottomWaveColor;
+    _secondWaveLayer.fillColor = bottomWaveColor.CGColor;
+}
+
+- (void)setupProperty
 {
-    _amplitude = 0;
-    _variable = 1.6;
+    _speed = 0.4/M_PI;
+    _times = 1;
+    _amplitude = HHMaxVariable;
+    _variable = HHMaxVariable;
     _increase = NO;
-    _stop = NO;
-   
     
 }
 
 - (CGFloat)currentHeight {
-    // guard let scrollView = scrollView() else { return 0.0 }
     if (!self.scrollView) {
         return 0.0;
     }
     return MAX(-originalContentInsetTop + 2* _height, 0);
-}
-
-
-- (void)addObserver {
-    [self.scrollView addObserver:self forKeyPath:HHKeyPathsContentOffset options:NSKeyValueObservingOptionNew context:nil];
-    [self.scrollView addObserver:self forKeyPath:HHKeyPathsPanGestureRecognizerState options:NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - Observer
@@ -146,40 +123,14 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
     }
     
     if ([keyPath isEqualToString:HHKeyPathsContentOffset]) {
-        
-        CGFloat offset = (-self.scrollView.contentOffset.y-self.scrollView.contentInset.top);
-        if (offset < 0.00) {
-            _times = 0;
-        }
-        if (offset == 0.00 && self.scrollView.isDecelerating) {
-            _stop = YES;
-            // [self stopWave];
-        }
-        
-        NSLog(@"%f", offset);
-
-        _times = offset/10 + 1;
-        NSLog(@"times : %d", _times);
-       
-        
+            [self scrollViewDidChangeContentOffset];
         
     } else if ([keyPath isEqualToString:HHKeyPathsFrame]) {
-        [self layoutSubviews];
-        
+        // [self layoutSubviews];
     } else if ([keyPath isEqualToString:HHKeyPathsContentInset]) {
         originalContentInsetTop = [change[NSKeyValueChangeNewKey] UIEdgeInsetsValue].top;
     } else if ([keyPath isEqualToString:HHKeyPathsPanGestureRecognizerState]) {
-        [self scrollViewDidChangeContentOffset];
-        if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
-            
-           //  CGFloat offset = (-self.scrollView.contentOffset.y-self.scrollView.contentInset.top);
-            CGFloat velocity = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView].y;
-
-            if (velocity > 0) {
-                // [self stopWave];
-                [self startWave];
-            }
-        }
+        // [self scrollViewDidChangeContentOffset];
     }
 }
 
@@ -187,7 +138,19 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
 
 - (void)scrollViewDidChangeContentOffset {
     
+    CGFloat offset = (-self.scrollView.contentOffset.y-self.scrollView.contentInset.top);
+    if (offset < 0.00) {
+        _times = 0;
+    }
     
+    _times = offset/10 + 1;
+
+    if (offset == 0.00 && self.scrollView.isDecelerating) {
+         [self animatingStopWave];
+    }
+    if (offset >= 0.00 && !self.scrollView.isDecelerating && self.state != HHPullToRefreshWaveViewAnimating && self.scrollView.isTracking) {
+         [self startWave];
+    }
 }
 
 - (void)displayLinkTric:(CADisplayLink *)displayLink {
@@ -205,7 +168,7 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
     if (_increase) {
         _variable += HHMinStepLength;
     } else {
-        CGFloat minus = _stop ? HHMaxStepLength : HHMinStepLength;
+        CGFloat minus = self.state == HHPullToRefreshWaveViewAnimatingToStopped ? HHMaxStepLength : HHMinStepLength;
         _variable -= minus;
         if (_variable <= 0.00) {
             [self stopWave];
@@ -213,7 +176,7 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
     }
     
     if (_variable <= HHMinVariable) {
-        _increase = _stop ? NO : YES;
+        _increase = self.state == HHPullToRefreshWaveViewAnimatingToStopped ? NO : YES;
     }
     
     if (_variable >= HHMaxVariable) {
@@ -231,7 +194,7 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
 }
 
 - (void)configWaveOffset {
-    // 这个算法是否有问题
+    //
     _offsetX += _speed;
     _offsetY =  [self currentHeight] - _amplitude;
 }
@@ -297,22 +260,46 @@ static NSString *HHKeyPathsPanGestureRecognizerState = @"panGestureRecognizer.st
         [self.secondWaveLayer removeFromSuperlayer];
     }
     
-    [self resetProperty];
-
+    [self setupProperty];
+    
+    self.state = HHPullToRefreshWaveViewAnimating;
     [self.layer addSublayer:self.firstWaveLayer];
     [self.layer addSublayer:self.secondWaveLayer];
     self.displaylink.paused = NO;
-    
-
-    
 }
+
 - (void)stopWave {
    
+    self.state = HHPullToRefreshWaveViewStopped;
     self.displaylink.paused = YES;
     self.firstWaveLayer.path = nil;
     self.secondWaveLayer.path = nil;
     [self.firstWaveLayer removeFromSuperlayer];
     [self.secondWaveLayer removeFromSuperlayer];
+}
+
+- (void)animatingStopWave {
+    self.state = HHPullToRefreshWaveViewAnimatingToStopped;
+    if (self.actionHandler) {
+        self.actionHandler();
+    }
+}
+
+- (void)observeScrollView:(UIScrollView *)scrollView {
+    self.scrollView = scrollView;
+    [self.scrollView addObserver:self forKeyPath:HHKeyPathsContentOffset options:NSKeyValueObservingOptionNew context:nil];
+    [self.scrollView addObserver:self forKeyPath:HHKeyPathsPanGestureRecognizerState options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)removeObserverScrollView:(UIScrollView *)scrollView {
+    [scrollView removeObserver:self forKeyPath:HHKeyPathsContentOffset];
+    [scrollView removeObserver:self forKeyPath:HHKeyPathsPanGestureRecognizerState];
+    
+}
+
+- (void)invalidateWave {
+    [self.displaylink invalidate];
+    
 }
 
 
