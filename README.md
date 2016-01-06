@@ -3,6 +3,8 @@ Wave animation pull to refresh for iOS, inspired by Mayijubao app
 
 ![](https://raw.githubusercontent.com/red3/HHPullToRefreshWave/master/HHPullToRefreshWavePreview1.gif)
 
+For more details visit this [blog](http://blog.coderhr.com/2015/12/10/waveview-with-cadisplaylink/).
+
 ## Requirements
 
 * Xcode7 or higher
