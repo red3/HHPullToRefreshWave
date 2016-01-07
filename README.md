@@ -1,4 +1,10 @@
 # HHPullToRefreshWave
+
+[![travis CI](https://img.shields.io/travis/red3/HHPullToRefreshWave/master.svg)](http://cocoapods.org/pods/HHPullToRefreshWave)
+[![Version](https://img.shields.io/cocoapods/v/HHPullToRefreshWave.svg?style=flat)](http://cocoapods.org/pods/HHPullToRefreshWave)
+[![License](https://img.shields.io/cocoapods/l/HHPullToRefreshWave.svg?style=flat)](http://cocoapods.org/pods/HHPullToRefreshWave)
+[![Platform](https://img.shields.io/cocoapods/p/HHPullToRefreshWave.svg?style=flat)](http://cocoapods.org/pods/HHPullToRefreshWave)
+
 Wave animation pull to refresh for iOS, inspired by Mayijubao app 
 
 ![](https://raw.githubusercontent.com/red3/HHPullToRefreshWave/master/HHPullToRefreshWavePreview1.gif)
