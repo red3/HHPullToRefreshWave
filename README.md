@@ -23,7 +23,7 @@ Open and run the Demo project in Xcode to see HHPullToRefreshWave in action.
 
 ## Installation
 
-### Cocoapods
+### CocoaPods
 
 ```ruby
 pod "HHAttachmentSheetView"
